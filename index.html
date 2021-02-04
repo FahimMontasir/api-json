@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>json</title>
+</head>
+
+<body>
+    <h1>Json API</h1>
+    <p>hello! dear json, how are you?</p>
+    <ul id="ul">
+
+    </ul>
+
+    <script>
+        // const myObject = {
+        //     name: "fahim",
+        //     id: 01876,
+        //     birthday: "28/03/202"
+        // }
+        // const user = JSON.stringify(myObject);
+        // console.log(user);
+
+        // const userFromServer = JSON.parse(user);
+        // console.log(userFromServer)
+
+        //     fetch('https://jsonplaceholder.typicode.com/users')
+        //     .then(response => response.json())
+        //     .then(json => getUserData(json))
+
+        //      function getUserData(users) {
+        //        const userName = users.map(user => user.username);
+        //         const ul = document.getElementById('ul');
+        //         for(let i=0; i < userName.length; i++){
+        //             const name = userName[i];
+        //             const li = document.createElement('li');
+        //             li.innerText = name;
+        //             ul.appendChild(li);
+        //         }
+
+        //    }
+        fetch('https://jsonplaceholder.typicode.com/users')
+            .then(response => response.json())
+            .then(json => getUsersName(json))
+            .catch(error => console.log(error))
+
+            function getUsersName(users) {
+               const userNames = users.map(x => x.name)
+               const ul = document.getElementById('ul');
+
+               for (let i = 0; i < userNames.length; i++) {
+                   const name = userNames[i];
+                   const li = document.createElement('li');
+                   li.innerText = name;
+                   ul.appendChild(li);
+               }
+            }
+    </script>
+</body>
+
+</html>
